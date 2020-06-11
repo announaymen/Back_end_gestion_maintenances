@@ -1,9 +1,9 @@
 const express = require("express");
-var shape = require("shape-json");
+//var shape = require("shape-json");
 const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const app = express();
-app.set("port", port);
+//app.set("port", port);
 const db = require("./queries");
 
 app.use(bodyParser.json());
