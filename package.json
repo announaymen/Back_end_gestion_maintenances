@@ -1,0 +1,25 @@
+{
+  "cacheDirectories": [
+    "client/node_modules",
+    "server/node_modules"
+  ],
+  "name": "node-api-postgres",
+  "version": "1.0.0",
+  "description": "RESTful API with Node.js, Express, and PostgreSQL",
+  "main": "index.js",
+  "license": "NON",
+  "scripts": {
+    "SmartOvationAPI": "node index.js",
+    "start": "node index.js",
+    "build": "ng build",
+    "heroku-postbuild": "ng build --prod",
+    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-postbuild": "echo This runs after Heroku installs dependencies, but before Heroku prunes and caches dependencies.",
+    "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "shape-json": ""
+  }
+}

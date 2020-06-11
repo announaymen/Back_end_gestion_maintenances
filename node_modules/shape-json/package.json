@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "shape-json",
+        "scope": null,
+        "escapedName": "shape-json",
+        "name": "shape-json",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\AYMEN\\Desktop\\PROJET 2CS\\Back-end\\Back-end_gestion_des_maintenances_preventive"
+    ]
+  ],
+  "_from": "shape-json@latest",
+  "_id": "shape-json@1.2.4",
+  "_inCache": true,
+  "_location": "/shape-json",
+  "_nodeVersion": "6.10.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/shape-json-1.2.4.tgz_1499884457769_0.4726718517486006"
+  },
+  "_npmUser": {
+    "name": "ansteh",
+    "email": "stehle.andre@gmail.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "shape-json",
+    "scope": null,
+    "escapedName": "shape-json",
+    "name": "shape-json",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/shape-json/-/shape-json-1.2.4.tgz",
+  "_shasum": "1b63c745c34a22ed3a1ba8533777e80ffe84a889",
+  "_shrinkwrap": null,
+  "_spec": "shape-json",
+  "_where": "C:\\Users\\AYMEN\\Desktop\\PROJET 2CS\\Back-end\\Back-end_gestion_des_maintenances_preventive",
+  "author": {
+    "name": "Andre Stehle"
+  },
+  "bugs": {
+    "url": "https://github.com/ansteh/shape-json/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "description": "util module for json object transformations",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.2.1",
+    "gulp-util": "^3.0.7",
+    "jasmine": "^2.4.1",
+    "webpack": "^1.13.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "1b63c745c34a22ed3a1ba8533777e80ffe84a889",
+    "tarball": "https://registry.npmjs.org/shape-json/-/shape-json-1.2.4.tgz"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "gitHead": "71f395cbbb08b07203f1b151e4fcc17bf8050888",
+  "homepage": "https://github.com/ansteh/shape-json#readme",
+  "keywords": [
+    "json",
+    "scheme",
+    "transform",
+    "convert",
+    "shape",
+    "patch",
+    "nested json",
+    "nesting"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "ansteh",
+      "email": "stehle.andre@gmail.com"
+    }
+  ],
+  "name": "shape-json",
+  "optionalDependencies": {},
+  "readme": "[![Build Status](https://api.travis-ci.org/ansteh/shape-json.svg?branch=master)](https://travis-ci.org/ansteh/shape-json)\n\n## Installation\n\nUsing npm:\n\n```js\nnpm install shape-json\n```\nIn Node.js:\n\n```js\nvar shape = require('shape-json');\n```\n\n## Parse input by a scheme defined as json\nConsider you want to transform the below json object, into a nested json object we used to from MEAN stack.\n```js\nvar input = [\n  {pid: 1, contributor: 'jdalton', projectID: 1, projectName: 'lodash'},\n  {pid: 1, contributor: 'jdalton', projectID: 2, projectName: 'docdown'},\n  {pid: 1, contributor: 'jdalton', projectID: 3, projectName: 'lodash-cli'},\n  {pid: 2, contributor: 'contra',  projectID: 4, projectName: 'gulp'},\n  {pid: 3, contributor: 'phated',  projectID: 4, projectName: 'gulp'},\n]\n```\nInstead of producing a lot of duplicated code to accomplish such transformations. We declare a scheme as a json object:\n```js\nvar scheme = {\n  \"$group[contributors](pid)\": {\n    \"id\": \"pid\",\n    \"name\": \"contributor\",\n    \"$group[projects](projectID)\": {\n      \"id\": \"projectID\",\n      \"name\": \"projectName\"\n    }\n  }\n};\nconsole.log(shape.parse(input, scheme));\n```\nThis is what you get:\n```json\n{\n  \"contributors\": [\n    {\n      \"id\": 1,\n      \"name\": \"jdalton\",\n      \"projects\": [\n        {\n          \"id\": 1,\n          \"name\": \"lodash\"\n        },\n        {\n          \"id\": 2,\n          \"name\": \"docdown\"\n        },\n        {\n          \"id\": 3,\n          \"name\": \"lodash-cli\"\n        }\n      ]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"contra\",\n      \"projects\": [\n        {\n          \"id\": 4,\n          \"name\": \"gulp\"\n        }\n      ]\n    },\n    {\n      \"id\": 3,\n      \"name\": \"phated\",\n      \"projects\": [\n        {\n          \"id\": 4,\n          \"name\": \"gulp\"\n        }\n      ]\n    }\n  ]\n}\n```\n\n## Parsing nested json objects as input\n```js\nlet scheme = {\n  \"$mirror(id)\": {\n    \"name\": \"event.name\"\n  }\n};\n\nlet nestedInput = [{\n  id: 1,\n  event: {\n    name: 'lookup',\n  }\n},{\n  id: 2,\n  event: {\n    name: 'add',\n  }\n}];\nconsole.log(shape.parse(nestedInput, scheme));\n```\n```json\n[ { \"name\": \"lookup\" }, { \"name\": \"add\" } ]\n```\n\nAnother example:\n```js\nvar scheme = {\n  \"$mirror[projects](projectID)\": {\n    \"project\": {\n      \"id\": \"projectID\",\n      \"name\": \"projectName\"\n    }\n  }\n};\nconsole.log(shape.parse(input, scheme));\n```\n```json\n{\n  \"projects\": [\n    {\n      \"project\": {\n        \"id\": 1,\n        \"name\": \"lodash\"\n      }\n    },\n    {\n      \"project\": {\n        \"id\": 2,\n        \"name\": \"docdown\"\n      }\n    },\n    {\n      \"project\": {\n        \"id\": 3,\n        \"name\": \"lodash-cli\"\n      }\n    },\n    {\n      \"project\": {\n        \"id\": 4,\n        \"name\": \"gulp\"\n      }\n    }\n  ]\n}\n```\n\nThe same example as above as Array:\n```js\nvar scheme = {\n  \"$mirror(projectID)\": {\n    \"project\": {\n      \"id\": \"projectID\",\n      \"name\": \"projectName\"\n    }\n  }\n};\nconsole.log(shape.parse(input, scheme));\n```\n```json\n[\n  {\n    \"project\": {\n      \"id\": 1,\n      \"name\": \"lodash\"\n    }\n  },\n  {\n    \"project\": {\n      \"id\": 2,\n      \"name\": \"docdown\"\n    }\n  },\n  {\n    \"project\": {\n      \"id\": 3,\n      \"name\": \"lodash-cli\"\n    }\n  },\n  {\n    \"project\": {\n      \"id\": 4,\n      \"name\": \"gulp\"\n    }\n  }\n]\n```\n\n## Assign default values by scheme\n```js\nvar simpleAssignScheme = {\n  \"id\": \"pid\",\n  \"$set[active]\": true // true in all objects\n};\nconsole.log(shape.parse(input, simpleAssignScheme));\n```\n```json\n{ \"id\": 1, \"active\": true }\n```\n\n## Extend parse method with own operation\n```js\nshape.define('growth', function(operation, provider, scheme, helpers){\n  var parse = helpers.parse;\n\n  var modifiedProvider = provider.map(function(point){\n    point.rate *= 100;\n    return point;\n  });\n\n  return parse(modifiedProvider, scheme);\n});\n\nvar scheme = {\n  \"$growth[growth]\": {\n    \"$mirror[rates]\": {\n      \"name\": \"name\",\n      \"percent\": \"rate\"\n    }\n  }\n};\n\nvar input = [\n  {\n    \"name\": \"test1\",\n    \"rate\": 0.1\n  },{\n    \"name\": \"test2\",\n    \"rate\": 0.2\n  }\n];\n\nvar result = shape.parse(input, scheme);\n//result equals:\n{\n  growth: {\n    rates: [\n      {\n        \"name\": \"test1\",\n        \"percent\": 10\n      },{\n        \"name\": \"test2\",\n        \"percent\": 20\n      }\n    ]\n  }\n}\n```\n\n## Create a scheme as object.\n```js\nvar scheme = shape.scheme()\n  .mirror({ id: 'pid', last_name: 'lastName' })\n  .indexBy('id');\n```\n\n## Apply a scheme.\n```js\nvar inputs = [{\n  pid: 1,\n  lastName: 'Stehle',\n  firstName: 'Andre'\n},{\n  pid: 2,\n  lastName: 'lastname',\n  firstName: 'firstname'\n}];\n\nconsole.log(scheme.form(inputs));\n/*\n  {\n    1:{\n      id: 1,\n      last_name: 'Stehle'\n    },\n    2:{\n      id: 2,\n      last_name: 'lastname'\n    }\n  }\n*/\n```\n\n## API Documentation\n\n## mirror a collection\nMirror a json by a scheme.\n\n```js\nvar input = {\n  pid: 1,\n  lastName: 'Stehle',\n  firstName: 'Andre'\n};\nvar scheme = {\n  id: 'pid',\n  last_name: 'lastName',\n};\n\nconsole.log(shape.mirror(input, scheme));\n/*\n  {\n    id: 1,\n    last_name: 'Stehle'\n  }\n*/\n\n\nvar inputs = [{\n  pid: 1,\n  lastName: 'Stehle',\n  firstName: 'Andre'\n},{\n  pid: 2,\n  lastName: 'lastname',\n  firstName: 'firstname'\n}];\n\nconsole.log(shape.mirror(inputs, scheme));\n/*\n  [{\n    id: 1,\n    last_name: 'Stehle'\n  },{\n    id: 2,\n    last_name: 'lastname'\n  }]\n*/\n```\n\n## indexing\nIndex an Array by a key.\n\n```js\nvar inputs = [{\n  id: 1,\n  last_name: 'Stehle'\n},{\n  id: 2,\n  last_name: 'lastname'\n}];\n\nconsole.log(shape.indexBy(inputs, 'id'));\n/*\n  {\n    1:{\n      id: 1,\n      last_name: 'Stehle'\n    },\n    2:{\n      id: 2,\n      last_name: 'lastname'\n    }\n  }\n*/\n```\n## chaining\nChaining previous examples.\n\n```js\nvar inputs = [{\n  pid: 1,\n  lastName: 'Stehle',\n  firstName: 'Andre'\n},{\n  pid: 2,\n  lastName: 'lastname',\n  firstName: 'firstname'\n}];\n\nvar result = shape.chain(inputs)\n  .mirror(scheme)\n  .indexBy('id')\n  .collection;\nconsole.log(result);\n/*\n  {\n    1:{\n      id: 1,\n      last_name: 'Stehle'\n    },\n    2:{\n      id: 2,\n      last_name: 'lastname'\n    }\n  }\n*/\n```\n\n## Related\n\n- [shape-array](https://github.com/ansteh/shape-array) - Convert array to json object\n- [difference-json](https://github.com/ansteh/difference-json) - Prompt the diffrence of two json objects\n\n## License\n\nMIT © [Andre Stehle](https://github.com/ansteh)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansteh/shape-json.git"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "test": "node test/test"
+  },
+  "version": "1.2.4"
+}
