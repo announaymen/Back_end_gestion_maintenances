@@ -79,14 +79,14 @@ const getVehicules = (request, response, pool) => {
       const vehicule = results.rows;
       //   response.status(200).json(piece);
       var scheme = {
-        "$group[vehicules](id_vehicule)": {
+        id_vehicule: {
           id_vehicule: "id_vehicule",
           id_marque: "id_marque",
           nom_marque: "nom_marque",
           id_model: "id_model",
           nom_model: "nom_model",
           annee: "annee",
-          "$group[fiche_technique](id_fiche_technique)": {
+          fiche_technique: {
             id_fiche_technique: "id_fiche_technique",
             constructeur: "constructeur",
             reservoir: "reservoir",
@@ -94,7 +94,7 @@ const getVehicules = (request, response, pool) => {
             nb_cylindres: "nb_cylindres",
             vitesse_max: "vitesse_max",
           },
-          "$group[chaffeur](id_employee)": {
+          chaffeur: {
             id_chauffreur: "id_employee",
             nom: "nom",
             prenom: "prenom",
@@ -126,14 +126,14 @@ const getVehiculeById = (request, response, pool) => {
       const vehicule = results.rows;
       //   response.status(200).json(piece);
       var scheme = {
-        "$group[vehicules](id_vehicule)": {
+        vehicule: {
           id_vehicule: "id_vehicule",
           id_marque: "id_marque",
           nom_marque: "nom_marque",
           id_model: "id_model",
           nom_model: "nom_model",
           annee: "annee",
-          "$group[fiche_technique](id_fiche_technique)": {
+          fiche_technique: {
             id_fiche_technique: "id_fiche_technique",
             constructeur: "constructeur",
             reservoir: "reservoir",
@@ -141,7 +141,7 @@ const getVehiculeById = (request, response, pool) => {
             nb_cylindres: "nb_cylindres",
             vitesse_max: "vitesse_max",
           },
-          "$group[chaffeur](id_employee)": {
+          chaffeur: {
             id_chauffreur: "id_employee",
             nom: "nom",
             prenom: "prenom",
