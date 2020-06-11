@@ -39,7 +39,7 @@ app.get("/pieces/:id", db.getPieceById);
 app.delete("/pieces/:id", db.deletePiece);
 /***************** gestion des vehicules*****************************/
 app.get("/vehicules", db.getVehicules);
-app.get("/vehicules", db.getVehiculeById);
+app.get("/vehicules/:id", db.getVehiculeById);
 
 /********************** */
 app.listen(port, () => {
