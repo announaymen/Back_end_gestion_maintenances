@@ -1,9 +1,11 @@
 const express = require("express");
 var shape = require("shape-json");
+const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const app = express();
+app.set("port", port);
 const db = require("./queries");
-const port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 app.use(
   //
