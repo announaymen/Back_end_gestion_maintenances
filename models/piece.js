@@ -2,7 +2,7 @@
 	id_fournisseur, reference, duree_vie, fabriqueur, prix, nb_ex_dispo)
 	VALUES ( 1 , '1', 5456, 'fab1', 542, 20);
 */
-//var shape = require("../node_modules/shape-json");
+var shape = require("shape-json");
 const updatePiece = (request, response, pool) => {
   const id_piece = parseInt(request.params.id);
   const {
@@ -86,8 +86,7 @@ const getPieces = (request, response, pool) => {
           },
         },
       };
-      //  console.log(shape.parse(piece, scheme));
-      // response.status(200).json(shape.parse(piece, scheme));
+      response.status(200).json(shape.parse(piece, scheme));
     }
   );
 };
@@ -117,7 +116,7 @@ const getPieceById = (request, response, pool) => {
       };
       // console.log(shape.parse(piece, scheme));
       //response.status(200).json(piece);
-      //  response.status(200).json(shape.parse(piece, scheme));
+      response.status(200).json(shape.parse(piece, scheme));
     }
   );
 };
