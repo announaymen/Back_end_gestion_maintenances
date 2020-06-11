@@ -56,6 +56,9 @@ const deletePiece = (request, response) => {
 const getVehicules = (request, response) => {
   vehicule.getVehicules(request, response, pool);
 };
+const getVehiculeById = (request, response) => {
+  vehicule.getVehiculeById(request, response, pool);
+};
 
 //**************************authentification****************************************
 const auth = (request, response) => {
@@ -89,4 +92,5 @@ module.exports = {
   deletePiece,
   /************* Vehicules */
   getVehicules,
+  getVehiculeById,
 };

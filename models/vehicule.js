@@ -1,15 +1,3 @@
-/*
-SELECT v.id_vehicule, 
-		f.id_fiche_technique, f.constructeur, f.reservoir, f.consommation_carburant,f.nb_cylindres,f.vitesse_max,
-		e.id_employee, e.nom,e.prenom,
-		ma.id_marque,ma.nom_marque, ma.annee,
-		m.id_model,nom_model
-		from vehicule v 
-		left join fiche_technique f on v.fiche_technique=f.id_fiche_technique
-		left join employee e on v.chauffeur=e.id_employee 
-		left join model m on v.id_model = m.id_model 
-		left join marque ma on ma.id_marque= m.id_marque;
-*/
 var shape = require("shape-json");
 
 const updatePiece = (request, response, pool) => {
@@ -88,7 +76,7 @@ const getVehicules = (request, response, pool) => {
       if (error) {
         throw error;
       }
-      const piece = results.rows;
+      const vehicule = results.rows;
       //   response.status(200).json(piece);
       var scheme = {
         "$group[vehicules](id_vehicule)": {
@@ -113,39 +101,54 @@ const getVehicules = (request, response, pool) => {
           },
         },
       };
-      //response.status(200).json(piece);
-
-      response.status(200).json(shape.parse(piece, scheme));
+      response.status(200).json(shape.parse(vehicule, scheme));
     }
   );
 };
-const getPieceById = (request, response, pool) => {
+const getVehiculeById = (request, response, pool) => {
   const id = parseInt(request.params.id);
   pool.query(
-    "SELECT  * FROM piece NATURAL join fournisseur WHERE id_piece = $1 ORDER BY id_piece ASC",
+    `SELECT v.id_vehicule,
+      f.id_fiche_technique, f.constructeur, f.reservoir, f.consommation_carburant,f.nb_cylindres,f.vitesse_max,
+      e.id_employee, e.nom,e.prenom,
+      ma.id_marque,ma.nom_marque, ma.annee,
+      m.id_model,nom_model
+		from vehicule v 
+      left join fiche_technique f on v.fiche_technique=f.id_fiche_technique
+      left join employee e on v.chauffeur=e.id_employee 
+      left join model m on v.id_model = m.id_model 
+      left join marque ma on ma.id_marque= m.id_marque where id_vehicule = $1;`,
     [id],
     (error, results) => {
       if (error) {
         throw error;
       }
-      const piece = results.rows;
+      const vehicule = results.rows;
+      //   response.status(200).json(piece);
       var scheme = {
-        id_piece: "id_piece",
-        reference: "reference",
-        duree_vie: "duree_vie",
-        fabriqueur: "fabriqueur",
-        prix: "prix",
-        nb_ex_dispo: "nb_ex_dispo",
-        fournisseur: {
-          id_fournisseur: "id_fournisseur",
-          nom: "nom",
-          adresse: "adresse",
-          date_debut_contrat: "date_debut_contrat",
+        "$group[vehicules](id_vehicule)": {
+          id_vehicule: "id_vehicule",
+          id_marque: "id_marque",
+          nom_marque: "nom_marque",
+          id_model: "id_model",
+          nom_model: "nom_model",
+          annee: "annee",
+          "$group[fiche_technique](id_fiche_technique)": {
+            id_fiche_technique: "id_fiche_technique",
+            constructeur: "constructeur",
+            reservoir: "reservoir",
+            consommation_carburant: "consommation_carburant",
+            nb_cylindres: "nb_cylindres",
+            vitesse_max: "vitesse_max",
+          },
+          "$group[chaffeur](id_employee)": {
+            id_chauffreur: "id_employee",
+            nom: "nom",
+            prenom: "prenom",
+          },
         },
       };
-      console.log(shape.parse(piece, scheme));
-      //response.status(200).json(piece);
-      response.status(200).json(shape.parse(piece, scheme));
+      response.status(200).json(shape.parse(vehicule, scheme));
     }
   );
 };
@@ -166,6 +169,6 @@ module.exports = {
   getVehicules,
   // createPiece,
   // updatePiece,
-  // getPieceById,
+  getVehiculeById,
   // deletePiece,
 };
