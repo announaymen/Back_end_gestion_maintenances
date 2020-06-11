@@ -113,7 +113,9 @@ const getVehicules = (request, response, pool) => {
           },
         },
       };
-      // response.status(200).json(shape.parse(piece, scheme));
+      response.status(200).json(piece);
+
+      //response.status(200).json(shape.parse(piece, scheme));
     }
   );
 };
