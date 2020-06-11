@@ -10,7 +10,7 @@ SELECT v.id_vehicule,
 		left join model m on v.id_model = m.id_model 
 		left join marque ma on ma.id_marque= m.id_marque;
 */
-//var shape = require("../node_modules/shape-json");
+var shape = require("../node_modules/shape-json");
 
 const updatePiece = (request, response, pool) => {
   const id_piece = parseInt(request.params.id);
@@ -113,8 +113,8 @@ const getVehicules = (request, response, pool) => {
           },
         },
       };
-      //  console.log(shape.parse(piece, scheme));
-      //  response.status(200).json(shape.parse(piece, scheme));
+      console.log(shape.parse(piece, scheme));
+      response.status(200).json(shape.parse(piece, scheme));
     }
   );
 };
