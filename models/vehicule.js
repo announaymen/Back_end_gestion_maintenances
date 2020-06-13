@@ -57,7 +57,7 @@ const getVehicules = (request, response, pool) => {
       const vehicule = results.rows;
       //   response.status(200).json(piece);
       var scheme = {
-        id_vehicule: {
+        "$group[vehicules](id_vehicule)": {
           id_vehicule: "id_vehicule",
           id_marque: "id_marque",
           nom_marque: "nom_marque",
@@ -104,7 +104,7 @@ const getVehiculeById = (request, response, pool) => {
       const vehicule = results.rows;
       //   response.status(200).json(piece);
       var scheme = {
-        "$group[vehicules](id_vehicule)": {
+        vehicule: {
           id_vehicule: "id_vehicule",
           id_marque: "id_marque",
           nom_marque: "nom_marque",

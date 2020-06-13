@@ -78,7 +78,7 @@ const getPieces = (request, response, pool) => {
           fabriqueur: "fabriqueur",
           prix: "prix",
           nb_ex_dispo: "nb_ex_dispo",
-          "$group[fournisseur](id_fournisseur)": {
+          fournisseur: {
             id_fournisseur: "id_fournisseur",
             nom: "nom",
             date_debut_contrat: "date_debut_contrat",
