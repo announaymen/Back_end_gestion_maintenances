@@ -3,6 +3,7 @@ const Pool = require("pg").Pool;
 const emp = require("./models/employee");
 const piece = require("./models/piece");
 const vehicule = require("./models/vehicule");
+const maintenance = require("./models/maintenance");
 const pool = new Pool({
   user: "duqnlvru",
   host: "balarama.db.elephantsql.com",
@@ -68,7 +69,10 @@ const updateVehicule = (request, response) => {
 const deleteVehicule = (request, response) => {
   vehicule.deleteVehicule(request, response, pool);
 };
-
+/*********************************gestion des Maintenances ************************/
+const createMaintenance = (request, response) => {
+  maintenance.createMaintenance(request, response, pool);
+};
 //**************************authentification****************************************
 const auth = (request, response) => {
   const { email, password } = request.body;
@@ -99,10 +103,12 @@ module.exports = {
   getPieces,
   getPieceById,
   deletePiece,
-  /************* Vehicules */
+  /************* Vehicules *******************/
   getVehicules,
   getVehiculeById,
   createVehicule,
   updateVehicule,
   deleteVehicule,
+  /************** Maintenances ***************/
+  createMaintenance,
 };

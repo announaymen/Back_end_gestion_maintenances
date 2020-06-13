@@ -43,6 +43,8 @@ app.get("/vehicules/:id", db.getVehiculeById);
 app.put("/vehicules/:id", db.updateVehicule);
 app.post("/vehicules", db.createVehicule);
 app.delete("/vehicules/:id", db.deleteVehicule);
+/****************gestion des maintenances ****************************/
+app.post("/maintenances", db.createMaintenance);
 
 /********************** */
 app.listen(port, () => {
