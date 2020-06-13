@@ -40,6 +40,9 @@ app.delete("/pieces/:id", db.deletePiece);
 /***************** gestion des vehicules*****************************/
 app.get("/vehicules", db.getVehicules);
 app.get("/vehicules/:id", db.getVehiculeById);
+app.put("/vehicules/:id", db.updateVehicule);
+app.post("/vehicules", db.createVehicule);
+app.delete("/vehicules/:id", db.deleteVehicule);
 
 /********************** */
 app.listen(port, () => {

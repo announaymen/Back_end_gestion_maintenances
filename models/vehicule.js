@@ -1,26 +1,11 @@
 var shape = require("shape-json");
 
-const updatePiece = (request, response, pool) => {
+const updateVehicule = (request, response, pool) => {
   const id_piece = parseInt(request.params.id);
-  const {
-    id_fournisseur,
-    reference,
-    duree_vie,
-    fabriqueur,
-    prix,
-    nb_ex_dispo,
-  } = request.body;
+  const { fiche_technique, parc, chauffeur, id_model } = request.body;
   pool.query(
-    "UPDATE piece SET id_fournisseur = $1, reference = $2, duree_vie = $3,fabriqueur = $4,prix=$5 ,nb_ex_dispo = $6 WHERE id_piece = $7 RETURNING *",
-    [
-      id_fournisseur,
-      reference,
-      duree_vie,
-      fabriqueur,
-      prix,
-      nb_ex_dispo,
-      id_piece,
-    ],
+    "UPDATE Vehicule SET fiche_technique = $1, parc = $2, chauffeur = $3,id_model = $4 WHERE id_vehicule = $5 RETURNING *",
+    [fiche_technique, parc, chauffeur, id_model, id_vehicule],
     (error, results) => {
       if (error) {
         response.status(404).send("error 1 " + error);
@@ -35,20 +20,13 @@ const updatePiece = (request, response, pool) => {
     }
   );
 };
-const createPiece = (request, response, pool) => {
-  // response.status(201).send("employee created");
-  const {
-    id_fournisseur,
-    reference,
-    duree_vie,
-    fabriqueur,
-    prix,
-    nb_ex_dispo,
-  } = request.body;
+const createVehicule = (request, response, pool) => {
+  const { fiche_technique, parc, chauffeur, id_model } = request.body;
 
   pool.query(
-    "INSERT INTO piece ( id_fournisseur, reference, duree_vie, fabriqueur, prix, nb_ex_dispo) VALUES ($1, $2,$3, $4,$5, $6) RETURNING *",
-    [id_fournisseur, reference, duree_vie, fabriqueur, prix, nb_ex_dispo],
+    `INSERT INTO vehicule ( fiche_technique, parc, chauffeur, id_model) 
+            VALUES ($1, $2,$3, $4) RETURNING *`,
+    [fiche_technique, parc, chauffeur, id_model],
     (error, results) => {
       if (error) {
         response.status(201).send("error 1" + error);
@@ -152,10 +130,10 @@ const getVehiculeById = (request, response, pool) => {
     }
   );
 };
-const deletePiece = (request, response, pool) => {
+const deleteVehicule = (request, response, pool) => {
   const id = parseInt(request.params.id);
   pool.query(
-    "DELETE FROM piece WHERE id_piece = $1",
+    "DELETE FROM vehicule WHERE id_vehicule = $1",
     [id],
     (error, results) => {
       if (error) {
@@ -167,8 +145,8 @@ const deletePiece = (request, response, pool) => {
 };
 module.exports = {
   getVehicules,
-  // createPiece,
-  // updatePiece,
+  createVehicule,
+  updateVehicule,
   getVehiculeById,
-  // deletePiece,
+  deleteVehicule,
 };
