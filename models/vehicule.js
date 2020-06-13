@@ -1,7 +1,7 @@
 var shape = require("shape-json");
 
 const updateVehicule = (request, response, pool) => {
-  const id_piece = parseInt(request.params.id);
+  const id_vehicule = parseInt(request.params.id);
   const { fiche_technique, parc, chauffeur, id_model } = request.body;
   pool.query(
     "UPDATE Vehicule SET fiche_technique = $1, parc = $2, chauffeur = $3,id_model = $4 WHERE id_vehicule = $5 RETURNING *",
@@ -104,7 +104,7 @@ const getVehiculeById = (request, response, pool) => {
       const vehicule = results.rows;
       //   response.status(200).json(piece);
       var scheme = {
-        vehicule: {
+        "$group[vehicules](id_vehicule)": {
           id_vehicule: "id_vehicule",
           id_marque: "id_marque",
           nom_marque: "nom_marque",
