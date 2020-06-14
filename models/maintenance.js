@@ -130,8 +130,8 @@ const getMaintenances = (request, response, pool) => {
 		 join fiche_technique f on f.id_fiche_technique = v.fiche_technique
 		 join employee chauf on chauf.id_employee = v.chauffeur
 		 join employee mec on mec.id_employee=m.mecanicien 
-		 join piece p on p.id_piece= m.piece
-		 join huile h on h.id_huile = m.huile
+		 left join piece p on p.id_piece= m.piece
+		 left join huile h on h.id_huile = m.huile
     `,
     (error, results) => {
       if (error) {

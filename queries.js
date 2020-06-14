@@ -2,6 +2,7 @@
 const Pool = require("pg").Pool;
 const emp = require("./models/employee");
 const piece = require("./models/piece");
+const huile = require("./models/huile");
 const vehicule = require("./models/vehicule");
 const maintenance = require("./models/maintenance");
 const pool = new Pool({
@@ -42,6 +43,22 @@ const getPieceById = (request, response) => {
 };
 const deletePiece = (request, response) => {
   piece.deletePiece(request, response, pool);
+};
+//********************** gestion des Huile */************************************* */
+const updateHuile = (request, response) => {
+  huile.updateHuile(request, response, pool);
+};
+const getHuiles = (request, response) => {
+  huile.getHuiles(request, response, pool);
+};
+const createHuile = (request, response) => {
+  huile.createHuile(request, response, pool);
+};
+const getHuileById = (request, response) => {
+  huile.getHuileById(request, response, pool);
+};
+const deleteHuile = (request, response) => {
+  huile.deleteHuile(request, response, pool);
 };
 //********************** gestion d'huile */************************************* */
 
@@ -115,6 +132,12 @@ module.exports = {
   getPieces,
   getPieceById,
   deletePiece,
+  /**************** Huile ************/
+  createHuile,
+  updateHuile,
+  getHuiles,
+  getHuileById,
+  deleteHuile,
   /************* Vehicules *******************/
   getVehicules,
   getVehiculeById,

@@ -37,6 +37,12 @@ app.get("/pieces", db.getPieces);
 app.post("/pieces", db.createPiece);
 app.get("/pieces/:id", db.getPieceById);
 app.delete("/pieces/:id", db.deletePiece);
+/*****************Gestion des Huiles**********************************/
+app.put("/Huiles/:id", db.updateHuile);
+app.get("/Huiles", db.getHuiles);
+app.post("/Huiles", db.createHuile);
+app.get("/Huiles/:id", db.getHuileById);
+app.delete("/Huiles/:id", db.deleteHuile);
 /***************** gestion des vehicules*****************************/
 app.get("/vehicules", db.getVehicules);
 app.get("/vehicules/:id", db.getVehiculeById);
