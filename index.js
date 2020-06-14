@@ -45,7 +45,10 @@ app.post("/vehicules", db.createVehicule);
 app.delete("/vehicules/:id", db.deleteVehicule);
 /****************gestion des maintenances ****************************/
 app.post("/maintenances", db.createMaintenance);
-
+app.put("/Maintenances/:id", db.updateMaintenance);
+app.get("/maintenances", db.getMaintenances);
+app.get("/maintenances/:id", db.getMaintenanceById);
+app.delete("/maintenances/:id", db.deleteMaintenance);
 /********************** */
 app.listen(port, () => {
   console.log(`App running on porttt ${port}.`);

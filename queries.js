@@ -73,6 +73,18 @@ const deleteVehicule = (request, response) => {
 const createMaintenance = (request, response) => {
   maintenance.createMaintenance(request, response, pool);
 };
+const updateMaintenance = (request, response) => {
+  maintenance.updateMaintenance(request, response, pool);
+};
+const getMaintenances = (request, response) => {
+  maintenance.getMaintenances(request, response, pool);
+};
+const getMaintenanceById = (request, response) => {
+  maintenance.getMaintenanceById(request, response, pool);
+};
+const deleteMaintenance = (request, response) => {
+  maintenance.deleteMaintenance(request, response, pool);
+};
 //**************************authentification****************************************
 const auth = (request, response) => {
   const { email, password } = request.body;
@@ -111,4 +123,8 @@ module.exports = {
   deleteVehicule,
   /************** Maintenances ***************/
   createMaintenance,
+  updateMaintenance,
+  getMaintenances,
+  getMaintenanceById,
+  deleteMaintenance,
 };
