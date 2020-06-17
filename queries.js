@@ -116,8 +116,8 @@ const auth = (request, response) => {
         response.writeHead(200, { "Content-Type": "text/event-stream" });
         response.status(200).send("authentification feild");
       } else {
-        response.status(200).send("signed-in!!");
         response.writeHead(200, { "Content-Type": "text/event-stream" });
+        response.status(200).send("signed-in!!!!");
       }
     }
   );
