@@ -115,7 +115,10 @@ const auth = (request, response) => {
       if (results.rowCount < 1) {
         response.writeHead(200, { "Content-Type": "text/event-stream" });
         response.status(200).send("authentification feild");
-      } else response.status(200).send("signed-in!!");
+      } else {
+        response.status(200).send("signed-in!!");
+        response.writeHead(200, { "Content-Type": "text/event-stream" });
+      }
     }
   );
 };
