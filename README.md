@@ -39,19 +39,19 @@ $ npm run start
 - **_Show you all employees_**
 
 ```bash
- GET: https://gestion-maintenaces.herokuapp.com/employees
+ GET: https://backend-gestion-maintenances.herokuapp.com/employees
 ```
 
 - **_Show first employee_**
 
 ```bash
-GET: https://gestion-maintenaces.herokuapp.com/employees/1
+GET: https://backend-gestion-maintenances.herokuapp.com/employees/1
 ```
 
 - **_Create employee_**
 
 ```bash
-POST: https://gestion-maintenaces.herokuapp.com/employees  with this body
+POST: https://backend-gestion-maintenances.herokuapp.com/employees  with this body
 {
         "id_poste": "1",
         "id_parc": "1                   ",
@@ -68,7 +68,7 @@ POST: https://gestion-maintenaces.herokuapp.com/employees  with this body
 - **_Update first employee_**
 
 ```bash
-PUT: https://gestion-maintenaces.herokuapp.com/1 with this body
+PUT: https://backend-gestion-maintenances.herokuapp.com/1 with this body
 
 {
         "id_poste": "1",
@@ -86,13 +86,13 @@ PUT: https://gestion-maintenaces.herokuapp.com/1 with this body
 - **_Delete first employee_**
 
 ```bash
-DELETE: https://gestion-maintenaces.herokuapp.com/employees/1
+DELETE: https://backend-gestion-maintenances.herokuapp.com/employees/1
 ```
 
 - **_Authentification_**
 
 ```bash
-POST: https://gestion-maintenaces.herokuapp.com/auth with these body
+POST: https://backend-gestion-maintenances.herokuapp.com/auth with these body
 {
     "email":"ga_announ@esi.dz",
      "password":"openpgpwd"
