@@ -116,7 +116,7 @@ const auth = (request, response) => {
         response.writeHead(200, { "Content-Type": "text/event-stream" });
         response.status(200).send("authentification feild");
       } else {
-        response.setHeader("custom_header_name", "abcde");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.status(200).send("signed in!!!!");
       }
     }

@@ -193,8 +193,7 @@ const getMaintenances = (request, response, pool) => {
           },
         };
         // response.status(200).json(maintenances);
-        response.setHeader("custom_header_name", "abcde");
-
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.status(200).json(shape.parse(maintenances, scheme));
       }
     }
@@ -286,7 +285,7 @@ const getMaintenanceById = (request, response, pool) => {
           },
         };
         // response.status(200).json(maintenances);
-        response.setHeader("custom_header_name", "abcde");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.status(200).json(shape.parse(maintenances, scheme));
       }
     }
