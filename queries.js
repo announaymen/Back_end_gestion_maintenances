@@ -113,6 +113,7 @@ const auth = (request, response) => {
         response.status(200).send(error);
       }
       if (results.rowCount < 1) {
+        response.setHeader("custom_header_name", "abcde");
         response.status(200).send("authentification feild");
       } else response.status(200).send("signed in!!");
     }
