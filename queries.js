@@ -113,10 +113,8 @@ const auth = (request, response) => {
         response.status(200).send(error);
       }
       if (results.rowCount < 1) {
-        response.writeHead(200, { "Content-Type": "text/event-stream" });
         response.status(200).send("authentification feild");
       } else {
-        response.setHeader("Access-Control-Allow-Origin", "*");
         response.status(200).send("signed in!!!!");
       }
     }
