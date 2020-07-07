@@ -34,14 +34,13 @@ const getMissions = (request, response, pool) => {
       throw error;
     }
     const missions = results.rows;
-    response.status(200).json(shape.parse(huile, scheme));
     response.status(200).json(missions);
   });
 };
 const getMissionById = (request, response, pool) => {
   const id = parseInt(request.params.id);
   pool.query(
-    "SELECT  * FROM missions id_mission = $1 ",
+    "SELECT  * FROM missions where id_mission = $1 ",
     [id],
     (error, results) => {
       if (error) {
