@@ -11,6 +11,10 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header(
+    ("Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS")
+  );
+
   next();
 });
 
@@ -63,7 +67,8 @@ app.put("/Maintenances/:id", db.updateMaintenance);
 app.get("/maintenances", db.getMaintenances);
 app.get("/maintenances/:id", db.getMaintenanceById);
 app.delete("/maintenances/:id", db.deleteMaintenance);
-/********************** */
+/**************** Gestoin des fiches techniques ******/
+
 app.get("/fiches", db.getFiches);
 app.get("/fiches/:id", db.getFicheById);
 /****************************************** */
