@@ -4,6 +4,7 @@ const emp = require("./models/employee");
 const piece = require("./models/piece");
 const huile = require("./models/huile");
 const vehicule = require("./models/vehicule");
+const fiche = require("./models/fiche");
 const maintenance = require("./models/maintenance");
 const pool = new Pool({
   user: "duqnlvru",
@@ -60,7 +61,13 @@ const getHuileById = (request, response) => {
 const deleteHuile = (request, response) => {
   huile.deleteHuile(request, response, pool);
 };
-//********************** gestion d'huile */************************************* */
+//********************** gestion des fiches */************************************* */
+const getFiches = (request, response) => {
+  fiche.getFiches(request, response, pool);
+};
+const getFicheById = (request, response) => {
+  fiche.getFicheById(request, response, pool);
+};
 
 /*********************** gestion des véhicules*********************************** */
 
@@ -152,4 +159,8 @@ module.exports = {
   getMaintenances,
   getMaintenanceById,
   deleteMaintenance,
+  /*************************************************/
+
+  getFicheById,
+  getFiches,
 };

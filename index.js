@@ -64,6 +64,9 @@ app.get("/maintenances", db.getMaintenances);
 app.get("/maintenances/:id", db.getMaintenanceById);
 app.delete("/maintenances/:id", db.deleteMaintenance);
 /********************** */
+app.get("/fiches", db.getFiches);
+app.get("/fiches/:id", db.getFicheById);
+/****************************************** */
 app.listen(port, () => {
   console.log(`App running on porttt ${port}.`);
 });
