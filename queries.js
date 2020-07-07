@@ -5,6 +5,7 @@ const piece = require("./models/piece");
 const huile = require("./models/huile");
 const vehicule = require("./models/vehicule");
 const fiche = require("./models/fiche");
+const mission = require("./models/mission");
 const maintenance = require("./models/maintenance");
 const pool = new Pool({
   user: "duqnlvru",
@@ -75,8 +76,16 @@ const getFicheById = (request, response) => {
 
 /*********************** gestion des notification ******************************* */
 
-/***********************gestion des publication ********************************* */
-
+/***********************gestion des missions ********************************* */
+const getMissions = (request, response) => {
+  mission.getMissions(request, response, pool);
+};
+const getMissionById = (request, response) => {
+  mission.getMissionById(request, response, pool);
+};
+const createMission = (request, response) => {
+  mission.createMission(request, response, pool);
+};
 /***********************gestion des véhicules************************************ */
 const getVehicules = (request, response) => {
   vehicule.getVehicules(request, response, pool);
@@ -159,8 +168,11 @@ module.exports = {
   getMaintenances,
   getMaintenanceById,
   deleteMaintenance,
-  /*************************************************/
-
+  /************** missions ***************/
+  createMission,
+  getMissions,
+  getMissionById,
+  /*******************fiches******************************/
   getFicheById,
   getFiches,
 };

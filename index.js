@@ -61,10 +61,14 @@ app.post("/vehicules", db.createVehicule);
 app.delete("/vehicules/:id", db.deleteVehicule);
 /****************gestion des maintenances ****************************/
 app.post("/maintenances", db.createMaintenance);
-app.put("/Maintenances/:id", db.updateMaintenance);
+app.put("/maintenances/:id", db.updateMaintenance);
 app.get("/maintenances", db.getMaintenances);
 app.get("/maintenances/:id", db.getMaintenanceById);
 app.delete("/maintenances/:id", db.deleteMaintenance);
+/*************************missions */
+app.post("/missions", db.createMission);
+app.get("/missions", db.getMissions);
+app.get("/missions/:id", db.getMissionById);
 /**************** Gestoin des fiches techniques ******/
 
 app.get("/fiches", db.getFiches);
