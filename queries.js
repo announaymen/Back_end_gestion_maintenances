@@ -5,7 +5,7 @@ const piece = require("./models/piece");
 const huile = require("./models/huile");
 const vehicule = require("./models/vehicule");
 const fiche = require("./models/fiche");
-const mission = require("./models/mission");
+const mission = require("./models/missions");
 const maintenance = require("./models/maintenance");
 const pool = new Pool({
   user: "duqnlvru",
