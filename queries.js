@@ -46,6 +46,7 @@ const getPieceById = (request, response) => {
 const deletePiece = (request, response) => {
   piece.deletePiece(request, response, pool);
 };
+
 //********************** gestion des Huile */************************************* */
 const updateHuile = (request, response) => {
   huile.updateHuile(request, response, pool);
@@ -85,6 +86,9 @@ const getMissionById = (request, response) => {
 };
 const createMission = (request, response) => {
   mission.createMission(request, response, pool);
+};
+const deleteMission = (request, response) => {
+  mission.deleteMission(request, response, pool);
 };
 /***********************gestion des véhicules************************************ */
 const getVehicules = (request, response) => {
@@ -172,6 +176,7 @@ module.exports = {
   createMission,
   getMissions,
   getMissionById,
+  deleteMission,
   /*******************fiches******************************/
   getFicheById,
   getFiches,

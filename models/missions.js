@@ -53,8 +53,22 @@ const getMissionById = (request, response, pool) => {
     }
   );
 };
+const deleteMission = (request, response, pool) => {
+  const id = parseInt(request.params.id);
+  pool.query(
+    "DELETE FROM missions WHERE id_mission = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json({ Message: "supprimé avec succès" });
+    }
+  );
+};
 
 module.exports = {
+  deleteMission,
   getMissions,
   createMission,
   getMissionById,

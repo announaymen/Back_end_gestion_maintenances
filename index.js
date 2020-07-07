@@ -69,8 +69,8 @@ app.delete("/maintenances/:id", db.deleteMaintenance);
 app.post("/missions", db.createMission);
 app.get("/missions", db.getMissions);
 app.get("/missions/:id", db.getMissionById);
+app.delete("/missions/:id", db.deleteMission);
 /**************** Gestoin des fiches techniques ******/
-
 app.get("/fiches", db.getFiches);
 app.get("/fiches/:id", db.getFicheById);
 /****************************************** */
