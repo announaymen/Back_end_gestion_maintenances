@@ -11,7 +11,7 @@ const pool = new Pool({
   user: "duqnlvru",
   host: "balarama.db.elephantsql.com",
   database: "duqnlvru",
-  password: "Nr2MB7TkmKVyVJkEv68R7kp7tcGCzPHw",
+  password: "**************",
   port: 5432,
 });
 //*********************gestion des employee ***************************************
