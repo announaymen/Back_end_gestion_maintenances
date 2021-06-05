@@ -98,3 +98,6 @@ POST: https://backend-gestion-maintenances.herokuapp.com/auth with these body
      "password":"openpgpwd"
 }
 ```
+ ### <I> Gestion des véhicules</I>
+ ### <I> Gestion des pieces</I>
+ ### <I> ....</I>
